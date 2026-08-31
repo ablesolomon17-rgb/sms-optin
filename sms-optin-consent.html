@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SMS Opt-In — Personal Assistant Line</title>
+<style>
+  :root {
+    --ink: #1b1f23;
+    --paper: #fafaf8;
+    --line: #d8d5cd;
+    --accent: #2f5d50;
+    --muted: #6b6b63;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #eceae4;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+    padding: 48px 16px;
+  }
+  .sheet {
+    background: var(--paper);
+    width: 100%;
+    max-width: 620px;
+    border: 1px solid var(--line);
+    padding: 44px 40px 40px;
+  }
+  .brand {
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 18px;
+    line-height: 1.3;
+  }
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0 0 18px;
+  }
+  .field-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .field-value {
+    font-size: 15px;
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+  }
+  .consent-box {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 16px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin: 24px 0;
+  }
+  .checkbox {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 2px;
+    border: 2px solid var(--accent);
+    background: var(--accent);
+    position: relative;
+    border-radius: 3px;
+  }
+  .checkbox::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .consent-text {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    font-size: 15px;
+    padding: 12px 26px;
+    border-radius: 3px;
+    cursor: default;
+  }
+  .footnote {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="brand">Personal Assistant Line</div>
+    <h1>Confirm your opt-in to receive SMS messages</h1>
+
+    <p>This number is a personal automation tool that lets the owner send and receive text messages with an AI assistant. Only the account owner sends and receives messages on this line.</p>
+
+    <div class="field-label">Mobile number</div>
+    <div class="field-value">+1 (XXX) XXX-XXXX</div>
+
+    <div class="field-label">Name</div>
+    <div class="field-value">Able</div>
+
+    <div class="consent-box">
+      <div class="checkbox"></div>
+      <div class="consent-text">
+        I agree to receive SMS text messages from this number. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe at any time, or HELP for support.
+      </div>
+    </div>
+
+    <button>Confirm opt-in</button>
+
+    <div class="footnote">
+      Opt-in type: Web-based confirmation, self-administered by the sole user of the line.<br>
+      This is a single-user personal tool — the account owner is both the sender and the sole recipient. No third-party or customer data is collected or messaged.
+    </div>
+  </div>
+</body>
+</html>
