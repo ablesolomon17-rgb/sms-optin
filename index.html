@@ -97,7 +97,7 @@
 
   <div class="consent-block">
     <div class="consent-row">
-      <input type="checkbox" id="consent" name="consent" required>
+      <input type="checkbox" id="consent" name="consent">
       <label for="consent">
         I agree to receive account notifications and reminders via SMS from
         <strong>Able Solomon</strong> at the number above. Message frequency
@@ -114,7 +114,7 @@
     </p>
   </div>
 
-  <button id="submitBtn" disabled>Confirm opt-in</button>
+  <button id="submitBtn">Confirm</button>
   <p class="status" id="status"></p>
 
   <div class="legal-footer">
@@ -126,24 +126,24 @@
   </div>
 
   <script>
-    // Extra safety net: the checkbox has no "checked" attribute in the HTML,
-    // and this script re-confirms it's unchecked on load (defends against any
-    // caching/autofill weirdness), and gates the submit button on it being
-    // explicitly checked by the user.
+    // The checkbox has no "checked" attribute in the HTML, and this script
+    // re-confirms it's unchecked on load (defends against any caching/
+    // autofill weirdness). SMS consent is optional and separate from the
+    // primary action: the Confirm button is always available regardless of
+    // checkbox state, so checking the box is never a condition of
+    // completing the form.
     const consent = document.getElementById('consent');
     const submitBtn = document.getElementById('submitBtn');
     const status = document.getElementById('status');
 
     consent.checked = false;
-    submitBtn.disabled = true;
-
-    consent.addEventListener('change', () => {
-      submitBtn.disabled = !consent.checked;
-    });
 
     submitBtn.addEventListener('click', () => {
-      if (!consent.checked) return;
-      status.textContent = 'Thanks — opt-in recorded. Text HELP for help or STOP to unsubscribe at any time.';
+      if (consent.checked) {
+        status.textContent = 'Thanks — opt-in recorded. Text HELP for help or STOP to unsubscribe at any time.';
+      } else {
+        status.textContent = 'Saved — no SMS consent recorded. You can opt in to text notifications anytime by checking the box above.';
+      }
     });
   </script>
 
