@@ -1,143 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SMS Opt-In — Personal Assistant Line</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMS Opt-In — Able Solomon</title>
 <style>
-  :root {
-    --ink: #1b1f23;
-    --paper: #fafaf8;
-    --line: #d8d5cd;
-    --accent: #2f5d50;
-    --muted: #6b6b63;
-  }
-  * { box-sizing: border-box; }
+  :root { color-scheme: dark light; }
   body {
-    margin: 0;
-    background: #eceae4;
-    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-    color: var(--ink);
-    display: flex;
-    justify-content: center;
-    padding: 48px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+    background: #16181d;
+    color: #eef0f3;
+    line-height: 1.5;
   }
-  .sheet {
-    background: var(--paper);
+  h1 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+  .owner { color: #a8adb8; font-size: 0.95rem; margin-bottom: 1.5rem; }
+  label { display: block; margin: 1rem 0 0.35rem; font-size: 0.9rem; color: #c7cbd4; }
+  input[type="tel"], input[type="text"] {
     width: 100%;
-    max-width: 620px;
-    border: 1px solid var(--line);
-    padding: 44px 40px 40px;
-  }
-  .brand {
-    font-size: 13px;
-    letter-spacing: 0.02em;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  h1 {
-    font-size: 24px;
-    font-weight: 600;
-    margin: 0 0 18px;
-    line-height: 1.3;
-  }
-  p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--ink);
-    margin: 0 0 18px;
-  }
-  .field-label {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  .field-value {
-    font-size: 15px;
-    border: 1px solid var(--line);
-    background: #fff;
     padding: 10px 12px;
-    margin-bottom: 20px;
-    border-radius: 3px;
+    border-radius: 8px;
+    border: 1px solid #333844;
+    background: #1e2128;
+    color: #eef0f3;
+    font-size: 1rem;
+    box-sizing: border-box;
   }
-  .consent-box {
-    border: 1px solid var(--line);
-    background: #fff;
-    padding: 16px 18px;
+  .consent-block {
+    margin-top: 1.75rem;
+    padding: 16px;
+    border: 1px solid #333844;
+    border-radius: 10px;
+    background: #1a1d23;
+  }
+  .consent-row {
     display: flex;
-    gap: 12px;
     align-items: flex-start;
-    margin: 24px 0;
+    gap: 10px;
   }
-  .checkbox {
+  /* IMPORTANT: no "checked" attribute anywhere on this input — must default unchecked */
+  .consent-row input[type="checkbox"] {
+    margin-top: 4px;
     width: 18px;
     height: 18px;
-    min-width: 18px;
-    margin-top: 2px;
-    border: 2px solid var(--accent);
-    background: var(--accent);
-    position: relative;
-    border-radius: 3px;
+    flex-shrink: 0;
   }
-  .checkbox::after {
-    content: "";
-    position: absolute;
-    left: 5px;
-    top: 1px;
-    width: 5px;
-    height: 9px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+  .consent-row label { margin: 0; font-size: 0.92rem; color: #dfe2e8; }
+  .fine-print {
+    margin-top: 0.85rem;
+    font-size: 0.82rem;
+    color: #9aa0ab;
   }
-  .consent-text {
-    font-size: 14px;
-    line-height: 1.55;
-  }
+  .fine-print a { color: #f59e0b; text-decoration: underline; }
   button {
-    background: var(--accent);
-    color: white;
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
     border: none;
-    font-size: 15px;
-    padding: 12px 26px;
-    border-radius: 3px;
-    cursor: default;
+    background: #f59e0b;
+    color: #16181d;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
   }
-  .footnote {
-    margin-top: 28px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
+  button:disabled {
+    background: #4a4d55;
+    color: #9aa0ab;
+    cursor: not-allowed;
   }
+  .legal-footer {
+    margin-top: 2.5rem;
+    font-size: 0.8rem;
+    color: #7f8590;
+    border-top: 1px solid #2a2d34;
+    padding-top: 1rem;
+  }
+  .legal-footer a { color: #c9ccd3; }
+  .status { margin-top: 1rem; font-size: 0.9rem; }
 </style>
 </head>
 <body>
-  <div class="sheet">
-    <div class="brand">Personal Assistant Line</div>
-    <h1>Confirm your opt-in to receive SMS messages</h1>
 
-    <p>This number is a personal automation tool that lets the owner send and receive text messages with an AI assistant. Only the account owner sends and receives messages on this line.</p>
+  <h1>SMS Text Notifications — Opt-In</h1>
+  <p class="owner">Operated by <strong>Able Solomon</strong>, sole proprietor.
+  This is a single-user personal automation tool: the owner is both the sender
+  and the sole recipient of these messages. No third-party or customer data is
+  collected or messaged through this line.</p>
 
-    <div class="field-label">Mobile number</div>
-    <div class="field-value">+1 (XXX) XXX-XXXX</div>
+  <label for="phone">Mobile number</label>
+  <input type="tel" id="phone" name="phone" placeholder="+1 (XXX) XXX-XXXX" required>
 
-    <div class="field-label">Name</div>
-    <div class="field-value">Able</div>
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" value="Able Solomon" required>
 
-    <div class="consent-box">
-      <div class="checkbox"></div>
-      <div class="consent-text">
-        I agree to receive SMS text messages from this number. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe at any time, or HELP for support.
-      </div>
+  <div class="consent-block">
+    <div class="consent-row">
+      <input type="checkbox" id="consent" name="consent" required>
+      <label for="consent">
+        I agree to receive SMS text messages from <strong>Able Solomon</strong>
+        at the number above. Message frequency varies (typically 1 message per day).
+        Message and data rates may apply. Reply <strong>STOP</strong> at any time to
+        unsubscribe, or <strong>HELP</strong> for support.
+      </label>
     </div>
-
-    <button>Confirm opt-in</button>
-
-    <div class="footnote">
-      Opt-in type: Web-based confirmation, self-administered by the sole user of the line.<br>
-      This is a single-user personal tool — the account owner is both the sender and the sole recipient. No third-party or customer data is collected or messaged.
-    </div>
+    <p class="fine-print">
+      By checking this box you consent to receive automated text messages.
+      Consent is not a condition of any purchase. See our
+      <a href="/privacy.html">Privacy Policy</a> and
+      <a href="/terms.html">Terms of Service</a> for full details on how your
+      information is used.
+    </p>
   </div>
+
+  <button id="submitBtn" disabled>Confirm opt-in</button>
+  <p class="status" id="status"></p>
+
+  <div class="legal-footer">
+    <p>Opt-in type: web-based confirmation, self-administered by the sole user
+    of the line. Use case: personal account notifications (task/habit
+    reminders sent from the owner's own productivity dashboard to the owner's
+    own phone).</p>
+    <p><a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+       <a href="/terms.html">Terms of Service</a></p>
+  </div>
+
+  <script>
+    // Extra safety net: the checkbox has no "checked" attribute in the HTML,
+    // and this script re-confirms it's unchecked on load (defends against any
+    // caching/autofill weirdness), and gates the submit button on it being
+    // explicitly checked by the user.
+    const consent = document.getElementById('consent');
+    const submitBtn = document.getElementById('submitBtn');
+    const status = document.getElementById('status');
+
+    consent.checked = false;
+    submitBtn.disabled = true;
+
+    consent.addEventListener('change', () => {
+      submitBtn.disabled = !consent.checked;
+    });
+
+    submitBtn.addEventListener('click', () => {
+      if (!consent.checked) return;
+      status.textContent = 'Thanks — opt-in recorded. Text HELP for help or STOP to unsubscribe at any time.';
+    });
+  </script>
+
 </body>
 </html>
